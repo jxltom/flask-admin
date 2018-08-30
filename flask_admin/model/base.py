@@ -2120,6 +2120,10 @@ class BaseModelView(BaseView, ActionsMixin):
         else:
             template = self.edit_template
 
+        # TODO: Try to fix huge queries when editing foreign keys
+        # The form shouldn't be changed here. But somewhere it has been changed.
+        form = self.edit_form(obj=model)
+
         return self.render(template,
                            model=model,
                            form=form,
